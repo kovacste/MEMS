@@ -47,7 +47,7 @@ const Home = {
     data() {
         return {
             temp: 0,
-            hum: 0
+            hum: 0,
             timer: null
         }
     },
