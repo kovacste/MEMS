@@ -17,7 +17,7 @@ function post(url, data) {
 var Login = { template:
             '<div> <div>' +
                 '<label> Felhasználónév </label>' +
-                '<input type="text" v-model="username">'+
+                '<v-text-field label="Felhasználónév" v-model="username"> </v-text-field>'+
             '</div>'+
             '<div>'+
                  '<label> Jelszó </label>'+
