@@ -62,7 +62,7 @@ const Home = {
             axios.get("/homeData").then(response => {
                 console.log(response.data.temp)
                 this.temp = response.data.temp
-                this.hum = response.data.hum[0] + "." + response.data.hum[1]
+                this.hum = response.data.hum
             })
         }
     },
