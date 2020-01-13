@@ -1,0 +1,22 @@
+.login-form {
+    margin: auto;
+    width: 20%;
+    padding: 10px;
+}
+
+input {
+    display: block;
+    width: 100%;
+    margin: 10px;
+    margin-bottom: 30px;
+}
+
+label {
+    display: block;
+    margin: 10px;
+    width: 100%;
+}
+
+button {
+    float: right;
+}
