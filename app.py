@@ -2,6 +2,7 @@ from flask import Flask, request, make_response, jsonify
 
 from Email import Email
 from EmailNotifier import EmailNotifier
+from Humidity import Humidity
 from SMTPOptions import SMTPOptions
 from User import User
 from Notification import Notificaion
@@ -28,8 +29,10 @@ def login():
 
 @app.route('/homeData', methods=["GET"])
 def make_home_data_response():
+    humidity = Humidity()
+    hum = humidity.get_humidity()
     temp = 5
-    return jsonify({'temp': temp})
+    return jsonify({'temp': temp, 'hum': hum})
 
 
 @app.route('/email')
