@@ -49,7 +49,7 @@ const Home = {
             temp: 0,
             hum: 0,
             timer: null
-            REFRESH_INTERVAL_MILLISEC: 2000
+            REFRESH_INTERVAL_MILLISEC: 5000
         }
     },
 
