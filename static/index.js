@@ -54,7 +54,8 @@ const Home = {
     },
 
     created() {
-        this.timer = setInterval(this.refreshData, this.REFRESH_INTERVAL_MILLISEC)
+        //this.timer = setInterval(this.refreshData, this.REFRESH_INTERVAL_MILLISEC)
+        this.refreshData()
     },
 
     methods: {
