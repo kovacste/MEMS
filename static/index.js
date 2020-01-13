@@ -48,7 +48,7 @@ const Home = {
         return {
             temp: 0,
             hum: 0,
-            timer: null
+            timer: null,
             REFRESH_INTERVAL_MILLISEC: 5000
         }
     },
