@@ -43,10 +43,11 @@ var Login = { template:
 }
 
 const Home = {
-    template: '<div><h1> Otthona állapota </h1> <widget label="Aktuális hőmérséklet" suffix="C°" :value="temp"> </widget> </div>',
+    template: '<div><h1> Otthona állapota </h1> <widget label="Aktuális hőmérséklet" suffix="C°" :value="temp"> </widget> <widget label="Aktuális páratartalom" suffix="%" :value="hum"></widget></div>',
     data() {
         return {
             temp: 0,
+            hum: 0
             timer: null
         }
     },
@@ -61,6 +62,7 @@ const Home = {
             axios.get("/homeData").then(response => {
                 console.log(response.data.temp)
                 this.temp = response.data.temp
+                this.hum = response.data.hum[0] + "." + response.data.hum[1]
             })
         }
     },

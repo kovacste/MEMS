@@ -31,7 +31,7 @@ def login():
 def make_home_data_response():
     humidity = Humidity()
     hum = humidity.get_humidity()
-    temp = 5
+    temp = humidity.get_temp()
     return jsonify({'temp': temp, 'hum': hum})
 
 

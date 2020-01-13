@@ -6,8 +6,13 @@ class Humidity:
 
     def __init__(self):
         self.humidity = None
+        self.temp = None
 
     def get_humidity(self):
-        self.humidity = Adafruit_DHT.read_retry(11, 4)
+        self.humidity, self.temp = Adafruit_DHT.read_retry(11, 4)
         return self.humidity
+
+    def get_temp(self):
+        self.humidity, self.temp = Adafruit_DHT.read_retry(11, 4)
+        return self.temp
 
