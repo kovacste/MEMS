@@ -49,11 +49,12 @@ const Home = {
             temp: 0,
             hum: 0,
             timer: null
+            REFRESH_INTERVAL_MILLISEC: 2000
         }
     },
 
     created() {
-        this.timer = setInterval(this.refreshData, 1000)
+        this.timer = setInterval(this.refreshData, this.REFRESH_INTERVAL_MILLISEC)
     },
 
     methods: {
