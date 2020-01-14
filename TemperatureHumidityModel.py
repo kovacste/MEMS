@@ -16,7 +16,7 @@ class TemperatureHumidityModel:
         return self.db.insert(query, val)
 
     def get_latest(self, limit):
-        query = 'SELECT * FROM temperature_humidity order by time ASC LIMIT ' + limit
+        query = 'SELECT * FROM temperature_humidity order by time DESC LIMIT ' + limit
         return self.db.find_all(query)
 
 

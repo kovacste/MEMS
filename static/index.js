@@ -64,7 +64,7 @@ const TemperatureStat = {
 
     mounted() {
         axios.get('/tempStat').then(response => {
-            this.rows = response.data
+            this.rows = response.data.reverse()
 
             this.rows.forEach(row => {
                 this.options.xaxis.categories.push(row[2])
