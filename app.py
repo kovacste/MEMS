@@ -34,9 +34,15 @@ def make_home_data_response():
     #hum = temp_hum_sensor.get_humidity()
     #temp = temp_hum_sensor.get_temp()
     model = TemperatureHumidityModel(DataBase('pydb'))
-    latest_row = model.get_latest()
+    latest_row = model.get_latest('1')
     return jsonify(latest_row)
 
+
+@app.route('/tempStat', methods=["GET"])
+def make_temp_data_response_for_stat():
+    model = TemperatureHumidityModel(DataBase('pydb'))
+    rows = model.get_latest('20')
+    return jsonify(rows)
 
 @app.route('/email')
 def email_test():

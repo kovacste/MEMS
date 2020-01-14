@@ -42,6 +42,38 @@ var Login = { template:
            }
 }
 
+const TemperatureStat = {
+    template: '<apexchart width="500" type="bar" :options="options" :series="series"></apexchart>',
+    data() {
+        return {
+            rows: [],
+            options: {
+                chart: {
+                  id: 'vuechart-example'
+                },
+                xaxis: {
+                  categories: []
+                }
+            },
+            series: [{
+                name: 'series-1',
+                data: []
+            }]
+        }
+    },
+
+    mounted() {
+        axios.get('/tempStat').then(response => {
+            this.rows = response.data
+
+            this.rows.forEach(row => {
+                this.options.xaxis.categories.push(row[2])
+                this.series[0].data.push(row[0])
+            })
+        })
+    }
+}
+
 const Home = {
     template: '<div><h1> Otthona állapota </h1> <widget label="Aktuális hőmérséklet" suffix="C°" :value="temp"> </widget> <widget label="Aktuális páratartalom" suffix="%" :value="hum"></widget><widget label="Utolsó frissítés" suffix="" :value="time"></div>',
     data() {
@@ -80,7 +112,8 @@ const Beállítások = {
 
 const routes = [
   { path: '/', component: Login },
-  { path: '/home', component: Home }
+  { path: '/home', component: Home },
+  { path: '/tempStat', component: TemperatureStat}
 ]
 
 const router = new VueRouter({
@@ -93,6 +126,7 @@ const Widget = {
 }
 
 Vue.component('widget', Widget)
+Vue.component('apexchart', VueApexCharts)
 
 
 var app = new Vue({
