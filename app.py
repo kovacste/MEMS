@@ -2,7 +2,8 @@ from flask import Flask, request, make_response, jsonify
 
 from Email import Email
 from EmailNotifier import EmailNotifier
-from Humidity import Humidity
+from TemperatureHumidityModel import TemperatureHumidityModel
+#from TemperatureHumiditySensor import TemperatureHumiditySensor
 from SMTPOptions import SMTPOptions
 from User import User
 from Notification import Notificaion
@@ -29,10 +30,12 @@ def login():
 
 @app.route('/homeData', methods=["GET"])
 def make_home_data_response():
-    humidity = Humidity()
-    hum = humidity.get_humidity()
-    temp = humidity.get_temp()
-    return jsonify({'temp': temp, 'hum': hum})
+    #temp_hum_sensor = TemperatureHumiditySensor()
+    #hum = temp_hum_sensor.get_humidity()
+    #temp = temp_hum_sensor.get_temp()
+    model = TemperatureHumidityModel(DataBase('pydb'))
+    latest_row = model.get_latest()
+    return jsonify(latest_row)
 
 
 @app.route('/email')

@@ -2,7 +2,7 @@ import sys
 import Adafruit_DHT
 
 
-class Humidity:
+class TemperatureHumiditySensor:
 
     def __init__(self):
         self.humidity = None

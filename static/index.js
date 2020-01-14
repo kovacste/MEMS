@@ -43,28 +43,28 @@ var Login = { template:
 }
 
 const Home = {
-    template: '<div><h1> Otthona állapota </h1> <widget label="Aktuális hőmérséklet" suffix="C°" :value="temp"> </widget> <widget label="Aktuális páratartalom" suffix="%" :value="hum"></widget></div>',
+    template: '<div><h1> Otthona állapota </h1> <widget label="Aktuális hőmérséklet" suffix="C°" :value="temp"> </widget> <widget label="Aktuális páratartalom" suffix="%" :value="hum"></widget><widget label="Utolsó frissítés" suffix="" :value="time"></div>',
     data() {
         return {
             temp: 0,
             hum: 0,
+            time: 0,
             timer: null,
             REFRESH_INTERVAL_MILLISEC: 10 * 1000
         }
     },
 
     created() {
-        //this.timer = setInterval(this.refreshData, this.REFRESH_INTERVAL_MILLISEC)
-        this.refreshData()
+        this.timer = setInterval(this.refreshData, this.REFRESH_INTERVAL_MILLISEC)
     },
 
     methods: {
         refreshData() {
             console.log('data refreshed')
             axios.get("/homeData").then(response => {
-                console.log(response.data.temp)
-                this.temp = response.data.temp
-                this.hum = response.data.hum
+                this.temp = response.data[0][0]
+                this.hum = response.data[0][1]
+                this.time = response.data[0][2]
             })
         }
     },

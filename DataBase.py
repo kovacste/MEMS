@@ -33,3 +33,12 @@ class DataBase:
 
     def close(self):
         self.connection.close()
+
+    def execute(self, query):
+        cur = self.connection.cursor()
+        cur.execute(query)
+
+    def table_exists(self, tablename):
+        cur = self.connection.cursor()
+        rows = cur.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='" + tablename + "';").fetchall()
+        return len(rows) > 0
