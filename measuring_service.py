@@ -12,9 +12,9 @@ BEAM_PIN = 4
 
 def break_beam_callback(channel):
     if GPIO.input(BEAM_PIN):
-        print('bean unbroken')
+        print('OTT VAN VALAMI')
     else:
-        print('bean proken')
+        print('NINCS OTT SEMMI')
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(BEAM_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
