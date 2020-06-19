@@ -30,7 +30,7 @@ GPIO.cleanup()
 
 #if not database.table_exists(TemperatureHumidityModel.table_name):
  #   database.execute('CREATE TABLE ' + TemperatureHumidityModel.table_name
-                     + ' (temperature VARCHAR(20), humidity VARCHAR(20), time VARCHAR(20))')
+                     #+ ' (temperature VARCHAR(20), humidity VARCHAR(20), time VARCHAR(20))')
 
 #scheduler = sched.scheduler(time.time, time.sleep)
 
