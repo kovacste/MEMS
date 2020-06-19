@@ -1,4 +1,6 @@
-class User:
+class UserModel:
+
+    table_name = 'users'
 
     def __init__(self, username, password, db):
         self.username = username
@@ -18,3 +20,6 @@ class User:
 
     def get_email(self):
         return self.email
+
+    def get_user_options(self):
+        return self.options

@@ -1,11 +1,11 @@
 import Email
 import Notification
-import User
+import UserModel
 
 
 class EmailNotifier:
 
-    def __init__(self, user: User, notification: Notification, email: Email):
+    def __init__(self, user: UserModel, notification: Notification, email: Email):
         self.user = user
         self.notification = notification
         self.email = email
