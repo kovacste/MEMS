@@ -3,25 +3,39 @@
 # start measurements
 # save them to database with timestamp
 import sched, time
+
+from Application import Application
+from BeamBreakEvent import BeamBreakEvent
+from BreakBeamSensor import BreakBeamSensor
+from BeamBreakModel import BeamBreakModel
 from DataBase import DataBase
 from TemperatureHumidityModel import TemperatureHumidityModel
 from TemperatureHumiditySensor import TemperatureHumiditySensor
-import RPi.GPIO as GPIO
+from Notification import Notification
+
+app = Application()
 
 BEAM_PIN = 4
+TEMP_HUM_PIN = 4
 
-def break_beam_callback(channel):
-    if GPIO.input(BEAM_PIN):
-        print('NINCS OTT SEMMI')
-    else:
-        print('OTT VAN VALAMI')
+beam_sensor = BreakBeamSensor(BEAM_PIN)
+beam_sensor.on_beam_break_callback_fn(lambda beam_break_event: BeamBreakEvent(
 
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(BEAM_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.add_event_detect(BEAM_PIN, GPIO.BOTH, callback=break_beam_callback)
+    app.notify_user(Notification(
+        'Mozgás érzékelése',
+        'Mozgást érzékeltünk itt meg itt, ekkor: '
+        + beam_break_event.time
+        + ' leírás '
+        + beam_break_event.description
+    ))
+
+)).on_beam_connect_callback_fn(lambda: (
+
+)).start()
 
 message = input("Press enter to quit\n\n")
-GPIO.cleanup()
+beam_sensor.stop()
+
 
 
 #MEASUREMENT_INTERVAL_SEC = 5
@@ -30,7 +44,7 @@ GPIO.cleanup()
 
 #if not database.table_exists(TemperatureHumidityModel.table_name):
  #   database.execute('CREATE TABLE ' + TemperatureHumidityModel.table_name
-                     #+ ' (temperature VARCHAR(20), humidity VARCHAR(20), time VARCHAR(20))')
+                     #+ ' (temperature VARCHAR(20), humidity VARCHAR(20), device_id VARCHAR(20), time VARCHAR(20))')
 
 #scheduler = sched.scheduler(time.time, time.sleep)
 
@@ -48,7 +62,7 @@ GPIO.cleanup()
  #   scheduler.enter(MEASUREMENT_INTERVAL_SEC, 1, do_measurements, (sc,))
   #  temp = temp_hum_sensor.get_temp()
    # hum = temp_hum_sensor.get_humidity()
-    #temp_hum_model.save_data(temp, hum)
+    #temp_hum_model.save_data(temp, hum, TEMP_HUM_PIN)
 
 
 #scheduler.enter(MEASUREMENT_INTERVAL_SEC, 1, do_measurements, (scheduler,))

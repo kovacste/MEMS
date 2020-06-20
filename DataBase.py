@@ -38,7 +38,7 @@ class DataBase:
         cur = self.connection.cursor()
         cur.execute(query)
 
-    def table_exists(self, tablename):
+    def table_exists(self, table_name):
         cur = self.connection.cursor()
-        rows = cur.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='" + tablename + "';").fetchall()
+        rows = cur.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='" + table_name + "';").fetchall()
         return len(rows) > 0

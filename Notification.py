@@ -1,6 +1,6 @@
-class Notificaion:
+class Notification:
 
-    def __init(self, title, message):
+    def __init__(self, title, message):
         self.title = title
         self.message = message
 

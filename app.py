@@ -6,7 +6,7 @@ from TemperatureHumidityModel import TemperatureHumidityModel
 #from TemperatureHumiditySensor import TemperatureHumiditySensor
 from SMTPOptions import SMTPOptions
 from UserModel import UserModel
-from Notification import Notificaion
+from Notification import Notification
 from DataBase import DataBase
 
 app = Flask(__name__)
@@ -54,12 +54,12 @@ def email_test():
         587
     )
     email = Email(smtp_options)
-    email.set_to("kovacst.elod@gmail.com")\
-        .set_message("Teszt uzenet")\
-        .send_email()
+    #email.set_to("kovacst.elod@gmail.com")\
+     #   .set_message("Teszt uzenet")\
+      #  .send_email()
 
     user = UserModel("admin", "admin", DataBase("pydb"))
-    notificaion = Notificaion("Teszt notification", "Ez egy teszt email notification!")
+    notificaion = Notification("Teszt notification", "Ez egy teszt email notification!")
 
     notifier = EmailNotifier(user, notificaion, email)
     notifier.notify_user()

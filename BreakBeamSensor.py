@@ -1,16 +1,43 @@
 import RPi.GPIO as GPIO
-BEAM_PIN = 4
 
-def break_beam_callback(channel):
-    if GPIO.input(BEAM_PIN):
-        print('bean unbroken')
-    else:
-        print('bean proken')
+from BeamBreakEvent import BeamBreakEvent
+import datetime
 
+class BreakBeamSensor:
 
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(BEAM_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.add_event_detect(BEAM_PIN, GPIO.BOTH, callback=break_beam_callback)
+    def __init__(self, pin_no):
+        self.beam_connected = False
+        self.pin_no = pin_no
+        self.on_beam_connect_callback_fn = None
+        self.on_beam_break_callback_fn = None
 
-message = input("Press enter to quit\n\n")
-GPIO.cleanup()
+    def on_beam_break(self, callback_fn):
+        self.on_beam_break_callback_fn = callback_fn
+        return self
+
+    def on_beam_connect(self, callback_fn):
+        self.on_beam_connect_callback_fn = callback_fn
+        return self
+
+    def start(self):
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(self.pin_no, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+        GPIO.add_event_detect(self.pin_no, GPIO.BOTH, callback=self.default_cb_fn)
+        return self
+
+    def stop(self):
+        GPIO.cleanup()
+        return self
+
+    def default_cb_fn(self):
+        if GPIO.input(self.pin_no):
+            if self.on_beam_connect_callback_fn is not None:
+                self.on_beam_connect_callback_fn()
+        else:
+            if self.on_beam_break_callback_fn is not None:
+                self.on_beam_break_callback_fn(BeamBreakEvent(
+                    datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S'),
+                    'Beam was broken',
+                    False
+                ))
+        return self
