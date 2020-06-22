@@ -30,7 +30,8 @@ class BeamBreakSensor:
         GPIO.cleanup()
         return self
 
-    def default_cb_fn(self):
+    def default_cb_fn(self, param):
+        print(param)
         if GPIO.input(self.pin_no):
             if self.on_beam_connect_callback_fn is not None:
                 self.on_beam_connect_callback_fn()
