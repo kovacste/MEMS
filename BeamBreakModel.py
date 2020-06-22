@@ -6,7 +6,7 @@ class BeamBreakModel:
 
     table_name = 'beam_break'
 
-    def __init__(self, db: DataBase):
+    def __init__(self, db):
         self.db = db
 
     def save_data(self, connection_status, device_id):

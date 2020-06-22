@@ -6,7 +6,7 @@ class TemperatureHumidityModel:
 
     table_name = 'temperature_humidity'
 
-    def __init__(self, db: DataBase):
+    def __init__(self, db):
         self.db = db
 
     def save_data(self, temperature, humidity, device_id):

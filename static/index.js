@@ -92,7 +92,6 @@ const Home = {
 
     methods: {
         refreshData() {
-            console.log('data refreshed')
             axios.get("/homeData").then(response => {
                 this.temp = response.data[0][0]
                 this.hum = response.data[0][1]
