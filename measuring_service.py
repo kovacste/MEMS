@@ -46,7 +46,7 @@ def bean_break_callback(beam_break_event):
 
 beam_sensor_model = BeamBreakModel(app.database)
 beam_sensor = BeamBreakSensor(BEAM_PIN)
-beam_sensor.on_beam_break_callback_fn(bean_break_callback).start()
+beam_sensor.on_beam_break(bean_break_callback).start()
 
 message = input("Press enter to quit\n\n")
 beam_sensor.stop()
