@@ -34,7 +34,11 @@ class BeamBreakSensor:
         print(param)
         if GPIO.input(self.pin_no):
             if self.on_beam_connect_callback_fn is not None:
-                self.on_beam_connect_callback_fn()
+                self.on_beam_connect_callback_fn(BeamBreakEvent(
+                    datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S'),
+                    'Beam connected at device ' + str(self.pin_no),
+                    False
+                ))
         else:
             if self.on_beam_break_callback_fn is not None:
                 self.on_beam_break_callback_fn(BeamBreakEvent(
