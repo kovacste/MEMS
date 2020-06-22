@@ -3,7 +3,8 @@ import RPi.GPIO as GPIO
 from BeamBreakEvent import BeamBreakEvent
 import datetime
 
-class BreakBeamSensor:
+
+class BeamBreakSensor:
 
     def __init__(self, pin_no):
         self.beam_connected = False

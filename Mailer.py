@@ -2,7 +2,7 @@ import smtplib, ssl
 from email.mime.text import MIMEText
 
 
-class Email:
+class Mailer:
 
     def __init__(self, smtp_options):
         self.to_address = ''

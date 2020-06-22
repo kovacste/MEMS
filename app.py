@@ -1,6 +1,6 @@
 from flask import Flask, request, make_response, jsonify
 
-from Email import Email
+from Mailer import Mailer
 from EmailNotifier import EmailNotifier
 from TemperatureHumidityModel import TemperatureHumidityModel
 #from TemperatureHumiditySensor import TemperatureHumiditySensor
@@ -53,7 +53,7 @@ def email_test():
         'vxcntyhtymrodelw',
         587
     )
-    email = Email(smtp_options)
+    mailer = Mailer(smtp_options)
     #email.set_to("kovacst.elod@gmail.com")\
      #   .set_message("Teszt uzenet")\
       #  .send_email()
@@ -61,5 +61,5 @@ def email_test():
     user = UserModel("admin", "admin", DataBase("pydb"))
     notificaion = Notification("Teszt notification", "Ez egy teszt email notification!")
 
-    notifier = EmailNotifier(user, notificaion, email)
+    notifier = EmailNotifier(user, notificaion, mailer)
     notifier.notify_user()

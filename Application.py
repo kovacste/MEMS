@@ -1,6 +1,6 @@
 from BeamBreakModel import BeamBreakModel
 from DataBase import DataBase
-from Email import Email
+from Mailer import Mailer
 from EmailNotifier import EmailNotifier
 from SMTPOptions import SMTPOptions
 from TemperatureHumidityModel import TemperatureHumidityModel
@@ -12,7 +12,7 @@ class Application:
     def __init__(self):
         self.database = DataBase('pydb')
         self.user = UserModel('admin', 'admin', self.database)
-        self.mailer = Email(SMTPOptions(
+        self.mailer = Mailer(SMTPOptions(
             'smtp.gmail.com',
             'kovacst.elod@gmail.com',
             'vxcntyhtymrodelw',
