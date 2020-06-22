@@ -39,7 +39,7 @@ class BeamBreakSensor:
             if self.on_beam_break_callback_fn is not None:
                 self.on_beam_break_callback_fn(BeamBreakEvent(
                     datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S'),
-                    'Beam was broken at device ' + self.pin_no,
+                    'Beam was broken at device ' + str(self.pin_no),
                     False
                 ))
         return self
