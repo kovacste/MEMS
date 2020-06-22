@@ -30,7 +30,6 @@ scheduler.enter(MEASUREMENT_INTERVAL_SEC, 1, do_measurements, (scheduler,))
 scheduler.run()
 """
 
-breaks = BeamBreakModel()
 
 def bean_break_callback(beam_break_event):
     app.notify_user(Notification(
@@ -46,6 +45,8 @@ def bean_break_callback(beam_break_event):
 beam_sensor_model = BeamBreakModel(app.database)
 beam_sensor = BeamBreakSensor(BEAM_PIN)
 beam_sensor.on_beam_break(bean_break_callback).start()
+
+beam_sensor_model.get_latest('20')
 
 message = input("Press enter to quit\n\n")
 beam_sensor.stop()
