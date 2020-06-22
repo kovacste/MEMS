@@ -77,8 +77,8 @@ const TemperatureStat = {
 const Home = {
     template: '<div>' +
         '<h1> Otthona állapota </h1> ' +
-        '<widget label="Aktuális hőmérséklet" suffix="C°" :value="temp"> </widget> ' +
-        '<widget label="Aktuális páratartalom" suffix="%" :value="hum"></widget>' +
+        '<widget label="Aktuális hőmérséklet" suffix="C°" :value="temp"/> ' +
+        '<widget label="Aktuális páratartalom" suffix="%" :value="hum" />' +
         '<widget label="Utolsó frissítés" suffix="" :value="time" />' +
         '<widget label="Utolsó mozgás érzékelése" suffix="" :value="lastMovement" />' +
         '</div>',
