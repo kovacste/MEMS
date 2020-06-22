@@ -42,9 +42,16 @@ def beam_break_callback(beam_break_event):
     beam_sensor_model.save_data(beam_break_event.connection_status, BEAM_PIN)
 
 
+def beam_connect_callback(beam_break_event):
+    beam_sensor_model.save_data(beam_break_event.connection_status, BEAM_PIN)
+
+
 beam_sensor_model = BeamBreakModel(app.database)
 beam_sensor = BeamBreakSensor(BEAM_PIN)
-beam_sensor.on_beam_break(beam_break_callback).start()
+beam_sensor\
+    .on_beam_break(beam_break_callback)\
+    .on_beam_connect(beam_connect_callback)\
+    .start()
 
 print(beam_sensor_model.get_latest('20'))
 
