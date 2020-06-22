@@ -14,8 +14,6 @@ BEAM_PIN = 4
 TEMP_HUM_PIN = 4
 app = Application()
 
-app.notify_user(Notification("Mozgás érzékelése", "Mozgást érzékeltünk itt meg itt, ekkor: "))
-
 
 """temp_hum_sensor = TemperatureHumiditySensor()
 temp_hum_model = TemperatureHumidityModel(app.database)
@@ -32,6 +30,7 @@ scheduler.enter(MEASUREMENT_INTERVAL_SEC, 1, do_measurements, (scheduler,))
 scheduler.run()
 """
 
+breaks = BeamBreakModel()
 
 def bean_break_callback(beam_break_event):
     app.notify_user(Notification(

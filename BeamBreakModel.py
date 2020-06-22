@@ -14,3 +14,7 @@ class BeamBreakModel:
         query = 'INSERT INTO beam_break (connection_status, device_id, time) VALUES (?, ?, ?)'
         val = (connection_status, device_id, now.strftime('%Y-%m-%d %H:%M:%S'))
         return self.db.insert(query, val)
+
+    def get_latest(self, limit):
+        query = 'SELECT * FROM ' + self.table_name + ' order by time DESC LIMIT ' + limit
+        return self.db.find_all(query)
