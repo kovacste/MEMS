@@ -31,7 +31,7 @@ scheduler.run()
 """
 
 
-def bean_break_callback(beam_break_event):
+def beam_break_callback(beam_break_event):
     app.notify_user(Notification(
         "Mozgás érzékelése",
         "Mozgást érzékeltünk itt meg itt, ekkor: "
@@ -44,7 +44,7 @@ def bean_break_callback(beam_break_event):
 
 beam_sensor_model = BeamBreakModel(app.database)
 beam_sensor = BeamBreakSensor(BEAM_PIN)
-beam_sensor.on_beam_break(bean_break_callback).start()
+beam_sensor.on_beam_break(beam_break_callback).start()
 
 beam_sensor_model.get_latest('20')
 
