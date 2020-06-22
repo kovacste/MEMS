@@ -21,7 +21,7 @@ var Login = { template:
             '</div>'+
             '<div>'+
                  '<label> Jelszó </label>'+
-                ' <input type="text" v-model="password">'+
+                ' <v-text-field type="password" v-model="password">'+
             '</div>'+
             '<div>'+
                ' <input type="button" @click=login() value="Belépés">'+
@@ -79,8 +79,8 @@ const Home = {
         '<h1> Otthona állapota </h1> ' +
         '<widget label="Aktuális hőmérséklet" suffix="C°" :value="temp"> </widget> ' +
         '<widget label="Aktuális páratartalom" suffix="%" :value="hum"></widget>' +
-        '<widget label="Utolsó frissítés" suffix="" :value="time">' +
-        '<widget label="Utolsó mozgás érzékelése" suffix="" :value="time">' +
+        '<widget label="Utolsó frissítés" suffix="" :value="time" />' +
+        '<widget label="Utolsó mozgás érzékelése" suffix="" :value="lastMovement" />' +
         '</div>',
     data() {
         return {
