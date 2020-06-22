@@ -1,5 +1,6 @@
 from flask import Flask, request, make_response, jsonify
 
+from BeamBreakModel import BeamBreakModel
 from Mailer import Mailer
 from EmailNotifier import EmailNotifier
 from TemperatureHumidityModel import TemperatureHumidityModel
@@ -35,7 +36,8 @@ def make_home_data_response():
     #temp = temp_hum_sensor.get_temp()
     model = TemperatureHumidityModel(DataBase('pydb'))
     latest_row = model.get_latest('1')
-    return jsonify(latest_row)
+    bb_model = BeamBreakModel(DataBase('pydb'))
+    return jsonify([latest_row, bb_model.get_latest('1')])
 
 
 @app.route('/tempStat', methods=["GET"])
@@ -63,3 +65,7 @@ def email_test():
 
     notifier = EmailNotifier(user, notificaion, mailer)
     notifier.notify_user()
+
+
+if __name__ == '__main__':
+    app.run(debug=True, host='0.0.0.0')
