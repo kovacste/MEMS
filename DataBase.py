@@ -11,7 +11,7 @@ class DataBase:
     def create_connection(self):
         conn = None
         try:
-            conn = sqlite3.connect(self.db_file_name)
+            conn = sqlite3.connect(self.db_file_name, check_same_thread=False)
             return conn
         except Error as e:
             print(e)
