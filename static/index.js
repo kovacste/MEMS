@@ -103,7 +103,7 @@ const Home = {
                 this.temp = response.data[0][0][0];
                 this.hum = response.data[0][0][1];
                 this.time = response.data[0][0][2];
-                this.lastMovement = response.data[0][0][2];
+                this.lastMovement = response.data[0][1][2];
             })
         }
     },
