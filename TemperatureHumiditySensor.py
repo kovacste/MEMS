@@ -7,7 +7,7 @@ class TemperatureHumiditySensor:
     def __init__(self, pin_no):
         self.humidity = None
         self.temp = None
-        self.pin_no = None
+        self.pin_no = pin_no
 
     def get_humidity(self):
         self.humidity, self.temp = Adafruit_DHT.read_retry(11, self.pin_no)
