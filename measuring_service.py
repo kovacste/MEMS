@@ -48,11 +48,11 @@ def beam_connect_callback(beam_break_event):
 
 beam_sensor_model = BeamBreakModel(app.database)
 beam_sensor = BeamBreakSensor(BEAM_PIN)
-beam_sensor\
+"""beam_sensor\
     .on_beam_break(beam_break_callback)\
     .on_beam_connect(beam_connect_callback)\
     .start()
 
 
 message = input("Press enter to quit\n\n")
-beam_sensor.stop()
+beam_sensor.stop()"""
