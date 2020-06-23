@@ -11,8 +11,8 @@ class TemperatureHumidityModel:
 
     def save_data(self, temperature, humidity, device_id):
         now = datetime.datetime.utcnow()
-        query = 'INSERT INTO temperature_humidity (humidity, temperature, device_id, time) VALUES (?, ?, ?)'
-        val = (humidity, temperature, device_id, now.strftime('%Y-%m-%d %H:%M:%S'))
+        query = 'INSERT INTO temperature_humidity (humidity, temperature, time) VALUES (?, ?, ?)'
+        val = (humidity, temperature, now.strftime('%Y-%m-%d %H:%M:%S'))
         return self.db.insert(query, val)
 
     def get_latest(self, limit):
