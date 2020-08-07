@@ -2,6 +2,7 @@
 import sched, time
 
 from Application import Application
+from BeamBreakEvent import BeamBreakEvent
 from BeamBreakSensor import BeamBreakSensor
 from BeamBreakModel import BeamBreakModel
 from TemperatureHumidityModel import TemperatureHumidityModel
@@ -31,6 +32,8 @@ scheduler.enter(MEASUREMENT_INTERVAL_SEC, 1, do_measurements, (scheduler,))
 scheduler.run()
 
 
+
+
 def beam_break_callback(beam_break_event):
     app.notify_user(Notification(
         "Mozgás érzékelése",
@@ -53,6 +56,13 @@ beam_sensor = BeamBreakSensor(BEAM_PIN)
     .on_beam_connect(beam_connect_callback)\
     .start()
 """
+
+beam_sensor.on_beam_connect(lambda event: BeamBreakEvent(
+    print('Handling beam connection event')
+))
+beam_sensor.on_beam_break(lambda  event: BeamBreakEvent(
+    print('Handling bean break event')
+))
 
 message = input("Press enter to quit\n\n")
 beam_sensor.stop()

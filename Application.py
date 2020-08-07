@@ -15,7 +15,7 @@ class Application:
         self.mailer = Mailer(SMTPOptions(
             'smtp.gmail.com',
             'kovacst.elod@gmail.com',
-            'vxcntyhtymrodelw',
+            'xxxxxxxxxxxxxxx',
             587
         ))
         self.init()

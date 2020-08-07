@@ -31,9 +31,6 @@ def login():
 
 @app.route('/homeData', methods=["GET"])
 def make_home_data_response():
-    #temp_hum_sensor = TemperatureHumiditySensor()
-    #hum = temp_hum_sensor.get_humidity()
-    #temp = temp_hum_sensor.get_temp()
     model = TemperatureHumidityModel(DataBase('pydb'))
     latest_row = model.get_latest('1')
     bb_model = BeamBreakModel(DataBase('pydb'))
@@ -52,7 +49,7 @@ def email_test():
     smtp_options = SMTPOptions(
         'smtp.gmail.com',
         'kovacst.elod@gmail.com',
-        'vxcntyhtymrodelw',
+        'xxxxxxxxxxxx',
         587
     )
     mailer = Mailer(smtp_options)
